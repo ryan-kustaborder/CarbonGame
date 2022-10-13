@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Slider from "./Slider";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [value, setValue] = useState(0);
+
+    return (
+        <div className="App">
+            <h2>Value: {value}</h2>
+            <Slider
+                Name="Value"
+                Value={value}
+                Min={0}
+                Max={20}
+                OnChange={setValue}
+            />
+        </div>
+    );
 }
 
 export default App;

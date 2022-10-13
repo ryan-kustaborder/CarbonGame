@@ -1,0 +1,73 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.Slider {
+    width: 50%;
+    position: relative;
+
+    & > input {
+        width: 100%;
+        -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+        }
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 36px;
+            width: 16px;
+            cursor: pointer;
+            margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+        }
+
+        &::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+
+            background: black;
+        }
+    }
+
+    & > svg {
+        position: absolute;
+        z-index: 1000;
+        top: 10px;
+
+        pointer-events: none;
+
+        fill: yellow;
+        stroke: black;
+        stroke-width: 2px;
+        width: 48px;
+    }
+}
+
+.ticks {
+    pointer-events: none;
+    top: 0;
+    width: 100%;
+    height: 24px;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & > div:first-child,
+    & > div:last-child {
+        width: 3px;
+        height: 100%;
+    }
+
+    & > div {
+        width: 1px;
+        height: 70%;
+        background-color: black;
+    }
+}
