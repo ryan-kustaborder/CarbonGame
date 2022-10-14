@@ -1,4 +1,4 @@
-import Control from "./Control";
+import Option from "./Option";
 import CONTROLS, {
     ENERGY_EFFICIENCY,
     ENERGY_PRODUCTION,
@@ -135,7 +135,7 @@ class App extends Component {
             }
 
             controls.push(
-                <Control
+                <Option
                     key={control.name}
                     Value={this.state[control.name]}
                     SetValue={(value) => {

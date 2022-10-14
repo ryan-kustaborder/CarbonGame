@@ -56,28 +56,28 @@
 
         user-select: none;
     }
-}
 
-.ticks {
-    pointer-events: none;
-    top: 0;
-    width: 100%;
-    height: 24px;
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    & > .ticks {
+        pointer-events: none;
+        top: 0;
+        width: 100%;
+        height: 24px;
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-    & > div:first-child,
-    & > div:last-child {
-        width: 3px;
-        height: 100%;
-    }
+        & > div:first-child,
+        & > div:last-child {
+            width: 3px;
+            height: 100%;
+        }
 
-    & > div {
-        width: 1px;
-        height: 70%;
-        background-color: black;
+        & > div {
+            width: 1px;
+            height: 70%;
+            background-color: black;
+        }
     }
 }
 
@@ -105,7 +105,7 @@
     }
 }
 
-.treatment {
+.Option {
     display: flex;
 
     width: 90%;
@@ -115,6 +115,48 @@
     & > label {
         position: absolute;
         top: -20px;
+    }
+
+    & > .Tons,
+    .PPU {
+        width: 48px;
+        height: 56px;
+        position: relative;
+        margin-right: 32px;
+        font-size: 20px;
+
+        &.PPU {
+            position: absolute;
+            right: 0;
+        }
+
+        & > .green {
+            color: green;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        & > .blue {
+            color: blue;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        & > .red {
+            color: red;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+        & > .black {
+            color: black;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
     }
 }
 
@@ -139,7 +181,7 @@
     }
 
     & > div {
-        background-color: red;
+        background-color: green;
     }
 
     & > p {
@@ -151,76 +193,34 @@
     }
 }
 
-#Scores {
-    display: flex;
-    padding: 24px;
-
-    & > #Total {
-        margin-left: 24px;
-    }
-
-    & > #Breakdown {
-        display: grid;
-        grid-template-columns: auto auto;
-        column-gap: 8px;
-
-        & > span {
-            border: 1px solid black;
-            display: inline-block;
-            width: 40px;
-            height: 24px;
-            text-align: center;
-        }
-    }
-}
-
-#Weights {
-    width: 300px;
-}
-
 #Top {
     display: flex;
     margin-bottom: 24px;
-}
 
-.Tons,
-.PPU {
-    width: 48px;
-    height: 56px;
-    position: relative;
-    margin-right: 32px;
-    font-size: 20px;
-
-    &.PPU {
-        position: absolute;
-        right: 0;
+    & > #Weights {
+        width: 300px;
     }
 
-    & > .green {
-        color: green;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+    & > #Scores {
+        display: flex;
+        padding: 24px;
 
-    & > .blue {
-        color: blue;
-        position: absolute;
-        top: 0;
-        right: 0;
-    }
+        & > #Total {
+            margin-left: 24px;
+        }
 
-    & > .red {
-        color: red;
-        position: absolute;
-        bottom: 0;
-        right: 0;
-    }
+        & > #Breakdown {
+            display: grid;
+            grid-template-columns: auto auto;
+            column-gap: 8px;
 
-    & > .black {
-        color: black;
-        position: absolute;
-        bottom: 0;
-        left: 0;
+            & > span {
+                border: 1px solid black;
+                display: inline-block;
+                width: 40px;
+                height: 24px;
+                text-align: center;
+            }
+        }
     }
 }

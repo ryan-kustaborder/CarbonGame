@@ -2,9 +2,9 @@ import React from "react";
 import PointBar from "./PointBar";
 import Slider from "./Slider";
 
-export default function Control(props) {
+export default function Option(props) {
     return (
-        <div className="treatment">
+        <div className="Option">
             <label>{props.Control.name}</label>
             <div className="Tons">
                 <p className="green">{props.Control.green}</p>
