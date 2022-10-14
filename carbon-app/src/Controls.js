@@ -1,6 +1,6 @@
-const LAND_MANAGEMENT = "Land Management";
-const ENERGY_PRODUCTION = "Energy Production";
-const ENERGY_EFFICIENCY = "Energy Efficiency";
+export const LAND_MANAGEMENT = "Land Management";
+export const ENERGY_PRODUCTION = "Energy Production";
+export const ENERGY_EFFICIENCY = "Energy Efficiency";
 
 const CONTROLS = {
     ConservationTillage: {

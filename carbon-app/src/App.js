@@ -1,5 +1,9 @@
 import Control from "./Control";
-import CONTROLS from "./Controls";
+import CONTROLS, {
+    ENERGY_EFFICIENCY,
+    ENERGY_PRODUCTION,
+    LAND_MANAGEMENT,
+} from "./Controls";
 
 import React, { Component } from "react";
 
@@ -7,7 +11,7 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        let initState = {};
+        let initState = { _view: ENERGY_EFFICIENCY };
 
         for (let control of Object.values(CONTROLS)) {
             initState[control.name] = 0;
@@ -66,6 +70,10 @@ class App extends Component {
         const controls = [];
 
         for (let control of Object.values(CONTROLS)) {
+            if (control.category !== this.state._view) {
+                continue;
+            }
+
             controls.push(
                 <Control
                     key={control.name}
@@ -89,16 +97,26 @@ class App extends Component {
                 <h1>Total Value: {this.calcTotalPoints()}</h1>
                 <h2>
                     Points from Energy Efficiency:
-                    {this.calcCategoryPoints("Energy Efficiency")}
+                    {this.calcCategoryPoints(ENERGY_EFFICIENCY)}
                 </h2>
                 <h2>
                     Points from Energy Production:
-                    {this.calcCategoryPoints("Energy Production")}
+                    {this.calcCategoryPoints(ENERGY_PRODUCTION)}
                 </h2>
                 <h2>
                     Points from Land Management:
-                    {this.calcCategoryPoints("Land Management")}
+                    {this.calcCategoryPoints(LAND_MANAGEMENT)}
                 </h2>
+                <select
+                    value={this.state._view}
+                    onChange={(e) => {
+                        this.setState({ _view: e.target.value });
+                    }}
+                >
+                    <option value={ENERGY_EFFICIENCY}>Energy Efficiency</option>
+                    <option value={ENERGY_PRODUCTION}>Energy Production</option>
+                    <option value={LAND_MANAGEMENT}>Land Management</option>
+                </select>
                 {controls}
             </div>
         );
