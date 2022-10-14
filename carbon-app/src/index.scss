@@ -12,7 +12,7 @@
 }
 
 .Slider {
-    width: 100px;
+    width: 200px;
     margin-right: 24px;
     position: relative;
     margin-bottom: 48px;
@@ -53,6 +53,8 @@
         stroke: black;
         stroke-width: 2px;
         width: 48px;
+
+        user-select: none;
     }
 }
 
@@ -179,4 +181,46 @@
 #Top {
     display: flex;
     margin-bottom: 24px;
+}
+
+.Tons,
+.PPU {
+    width: 48px;
+    height: 56px;
+    position: relative;
+    margin-right: 32px;
+    font-size: 20px;
+
+    &.PPU {
+        position: absolute;
+        right: 0;
+    }
+
+    & > .green {
+        color: green;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    & > .blue {
+        color: blue;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    & > .red {
+        color: red;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+    & > .black {
+        color: black;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
 }

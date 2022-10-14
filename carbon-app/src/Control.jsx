@@ -6,6 +6,12 @@ export default function Control(props) {
     return (
         <div className="treatment">
             <label>{props.Control.name}</label>
+            <div className="Tons">
+                <p className="green">{props.Control.green}</p>
+                <p className="blue">{props.Control.blue}</p>
+                <p className="red">{props.Control.red}</p>
+                <p className="black">{props.Control.black}</p>
+            </div>
             <Slider
                 Name={props.Control.name}
                 Value={props.Value}
@@ -14,6 +20,12 @@ export default function Control(props) {
                 OnChange={props.SetValue}
             />
             <PointBar Points={props.Value} Control={props.Control} />
+            <div className="PPU">
+                <p className="green">{props.Control.green * 2}</p>
+                <p className="blue">{props.Control.blue * 3}</p>
+                <p className="red">{props.Control.red * 10}</p>
+                <p className="black">{props.Control.black * 1}</p>
+            </div>
         </div>
     );
 }
