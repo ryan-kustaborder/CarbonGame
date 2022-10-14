@@ -102,4 +102,11 @@
     display: flex;
 
     width: 90%;
+    position: relative;
+    margin-bottom: 8px;
+
+    & > label {
+        position: absolute;
+        top: -20px;
+    }
 }

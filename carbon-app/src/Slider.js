@@ -32,7 +32,7 @@ export default function Slider(props) {
             viewBox="0 0 50.2 29.4"
         >
             <polygon points="25.1,0.8 1.1,28.9 49.1,28.9 " />
-            <text transform="matrix(1 0 0 1 21.7176 21.9881)">
+            <text x="50%" y="70%" dominantBaseline="middle" textAnchor="middle">
                 {props.Value}
             </text>
         </svg>

@@ -5,6 +5,7 @@ import Slider from "./Slider";
 export default function Control(props) {
     return (
         <div className="treatment">
+            <label>{props.Control.name}</label>
             <Slider
                 Name={props.Control.name}
                 Value={props.Value}

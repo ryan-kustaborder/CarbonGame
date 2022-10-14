@@ -17,7 +17,7 @@ export default function PointBar(props) {
                 props.Control.black * 1) *
             props.Control.max *
             0.1;
-        console.log(con);
+
         containerRef.current.style.width = con + "px";
 
         let green = props.Control.green * props.Points * ratio * 2;
