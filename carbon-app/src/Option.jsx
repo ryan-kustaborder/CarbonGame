@@ -23,8 +23,8 @@ export default function Option(props) {
             <div className="PPU">
                 <p className="green">{props.Option.green * 2}</p>
                 <p className="blue">{props.Option.blue * 3}</p>
-                <p className="red">{props.Option.red * 10}</p>
                 <p className="black">{props.Option.black * 1}</p>
+                <p className="red">{props.Option.red * 10}</p>
             </div>
         </div>
     );

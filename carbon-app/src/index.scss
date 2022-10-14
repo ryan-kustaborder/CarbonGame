@@ -6,6 +6,20 @@
         sans-serif;
 }
 
+:root {
+    --green: rgb(47, 132, 55);
+    --blue: rgb(26, 26, 164);
+    --red: rgb(176, 27, 27);
+    --black: black;
+
+    --border-thin: 1px solid var(--black);
+    --border-thick: 2px solid var(--black);
+
+    --small: 16px;
+    --medium: 32px;
+    --large: 64px;
+}
+
 .App {
     display: flex;
     flex-direction: column;
@@ -15,14 +29,14 @@
 }
 
 select {
-    height: 26px;
+    height: var(--medium);
 }
 
 .Slider {
     width: 200px;
-    margin-right: 24px;
+    margin-right: var(--medium);
     position: relative;
-    margin-bottom: 64px;
+    margin-bottom: var(--large);
 
     & > input {
         width: 100%;
@@ -45,7 +59,7 @@ select {
             height: 4px;
             cursor: pointer;
 
-            background: black;
+            background: var(--black);
         }
     }
 
@@ -101,27 +115,22 @@ select {
 }
 
 .PointBar {
-    height: 40px;
-    border: 2px solid black;
+    height: var(--medium);
+    border: var(--border-thick);
     display: flex;
     position: relative;
 
-    & > div {
-        width: 40px;
-        height: 100%;
-    }
-
     & > .red {
-        background-color: red;
+        background-color: var(--red);
     }
     & > .black {
-        background-color: black;
+        background-color: var(--black);
     }
     & > .blue {
-        background-color: blue;
+        background-color: var(--blue);
     }
     & > .green {
-        background-color: green;
+        background-color: var(--green);
     }
 
     & > .ticks {
@@ -141,7 +150,7 @@ select {
         & > div {
             width: 12px;
             height: 100%;
-            border-left: 1px solid black;
+            border-left: --border-thin;
         }
     }
 
@@ -178,50 +187,46 @@ select {
 
     & > .Tons,
     .PPU {
-        width: 48px;
-        height: 56px;
         position: relative;
         margin-right: 32px;
-        font-size: 20px;
+        font-size: 24px;
+        border: var(--border-thin);
+
+        display: grid;
+        grid-template-columns: auto auto;
+        column-gap: 4px;
 
         &.PPU {
             position: absolute;
             right: 0;
         }
 
+        & > p {
+            text-align: center;
+            margin: auto;
+        }
+
         & > .green {
-            color: green;
-            position: absolute;
-            top: 0;
-            left: 0;
+            color: var(--green);
         }
 
         & > .blue {
-            color: blue;
-            position: absolute;
-            top: 0;
-            right: 0;
+            color: var(--blue);
         }
 
         & > .red {
-            color: red;
-            position: absolute;
-            bottom: 0;
-            right: 0;
+            color: var(--red);
         }
 
         & > .black {
-            color: black;
-            position: absolute;
-            bottom: 0;
-            left: 0;
+            color: var(--black);
         }
     }
 }
 
 .ProgressBar {
     height: 200px;
-    border: 1px solid black;
+    border: var(--border-thin);
     width: 100px;
 
     display: flex;
@@ -232,16 +237,16 @@ select {
     position: relative;
 
     &.horizontal {
-        height: 24px;
+        height: var(--medium);
         width: 200px;
 
         & > div {
-            height: 24px;
+            height: var(--medium);
         }
     }
 
     & > div {
-        background-color: green;
+        background-color: var(--green);
     }
 
     & > .value {
@@ -289,7 +294,7 @@ select {
             column-gap: 8px;
 
             & > span {
-                border: 1px solid black;
+                border: var(--border-thin);
                 display: inline-block;
                 width: 40px;
                 height: 24px;
