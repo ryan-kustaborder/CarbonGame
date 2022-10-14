@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Control from "./Control";
 import CONTROLS from "./Controls";
 
@@ -10,7 +9,7 @@ class App extends Component {
 
         let initState = {};
 
-        for (let [key, control] of Object.entries(CONTROLS)) {
+        for (let control of Object.values(CONTROLS)) {
             initState[control.name] = 0;
         }
 
@@ -20,7 +19,7 @@ class App extends Component {
     calcTotalPoints() {
         let sum = 0;
 
-        for (let [key, control] of Object.entries(CONTROLS)) {
+        for (let control of Object.values(CONTROLS)) {
             let points = this.state[control.name];
             let green = control.green * points * 2;
             let blue = control.blue * points * 3;
@@ -36,7 +35,7 @@ class App extends Component {
     calcCategoryPoints(category) {
         let sum = 0;
 
-        for (let [key, control] of Object.entries(CONTROLS)) {
+        for (let control of Object.values(CONTROLS)) {
             if (control.category !== category) {
                 continue;
             }
@@ -66,7 +65,7 @@ class App extends Component {
     render() {
         const controls = [];
 
-        for (let [key, control] of Object.entries(CONTROLS)) {
+        for (let control of Object.values(CONTROLS)) {
             controls.push(
                 <Control
                     key={control.name}
