@@ -16,8 +16,13 @@ class App extends Component {
 
         let initState = {
             _view: ENERGY_EFFICIENCY,
-            _total: 0,
-            _controlsUsed: 0,
+
+            _optionsTotal: 0,
+            _optionsEfficiency: 0,
+            _optionsProduction: 0,
+            _optionsManagement: 0,
+
+            _pointsTotal: 0,
             _pointsEfficiency: 0,
             _pointsProduction: 0,
             _pointsManagement: 0,
@@ -35,7 +40,11 @@ class App extends Component {
         let pointsEfficiency = 0;
         let pointsProduction = 0;
         let pointsManagement = 0;
-        let remainingOptions = 0;
+
+        let optionsTotal = 0;
+        let optionsEfficiency = 0;
+        let optionsProduction = 0;
+        let optionsManagement = 0;
 
         for (let control of Object.values(CONTROLS)) {
             let points = this.state[control.name];
@@ -60,22 +69,64 @@ class App extends Component {
                 pointsManagement += value;
             }
 
-            // Update Used Options
-            remainingOptions += parseInt(this.state[control.name]);
+            // Update Total Options Used
+            let options = parseInt(this.state[control.name]);
+            optionsTotal += options;
+
+            // Update Category Specific Options Used
+            if (cat === ENERGY_EFFICIENCY) {
+                optionsEfficiency += options;
+            } else if (cat === ENERGY_PRODUCTION) {
+                optionsProduction += options;
+            } else if (cat === LAND_MANAGEMENT) {
+                optionsManagement += options;
+            }
         }
 
         let newState = {
-            _total: pointsTotal,
-            _controlsUsed: remainingOptions,
+            _pointsTotal: pointsTotal,
             _pointsEfficiency: pointsEfficiency,
             _pointsProduction: pointsProduction,
             _pointsManagement: pointsManagement,
+
+            _optionsTotal: optionsTotal,
+            _optionsEfficiency: optionsEfficiency,
+            _optionsProduction: optionsProduction,
+            _optionsManagement: optionsManagement,
         };
 
         this.setState(newState);
     }
 
     render() {
+        let categoryLimit;
+
+        if (this.state._view === ENERGY_EFFICIENCY) {
+            categoryLimit = (
+                <ProgressBar
+                    Direction="horizontal"
+                    Value={this.state._optionsEfficiency}
+                    Max={50}
+                />
+            );
+        } else if (this.state._view === ENERGY_PRODUCTION) {
+            categoryLimit = (
+                <ProgressBar
+                    Direction="horizontal"
+                    Value={this.state._optionsProduction}
+                    Max={75}
+                />
+            );
+        } else if (this.state._view === LAND_MANAGEMENT) {
+            categoryLimit = (
+                <ProgressBar
+                    Direction="horizontal"
+                    Value={this.state._optionsManagement}
+                    Max={25}
+                />
+            );
+        }
+
         const controls = [];
 
         for (let control of Object.values(CONTROLS)) {
@@ -101,46 +152,56 @@ class App extends Component {
 
         return (
             <div className="App">
-                <img id="Weights" src={WEIGHTS} />
-                <div id="Scores">
-                    <div id="Breakdown">
-                        <ProgressBar
-                            Direction="horizontal"
-                            Value={this.state._controlsUsed}
-                            Max={100}
-                        />
-                        <p>
-                            Energy Efficiency:
+                <div id="Top">
+                    <img id="Weights" src={WEIGHTS} />
+                    <div id="Scores">
+                        <div id="Breakdown">
+                            <select
+                                value={this.state._view}
+                                onChange={(e) => {
+                                    this.setState({ _view: e.target.value });
+                                }}
+                            >
+                                <option value={ENERGY_EFFICIENCY}>
+                                    Energy Efficiency
+                                </option>
+                                <option value={ENERGY_PRODUCTION}>
+                                    Energy Production
+                                </option>
+                                <option value={LAND_MANAGEMENT}>
+                                    Land Management
+                                </option>
+                            </select>
+
+                            {categoryLimit}
+
+                            <p>Options Remaining:</p>
+                            <ProgressBar
+                                Direction="horizontal"
+                                Value={this.state._optionsTotal}
+                                Max={100}
+                            />
+                            <p>Energy Efficiency:</p>
                             <span>{this.state._pointsEfficiency}</span>
-                        </p>
-                        <p>
-                            Energy Production:
+
+                            <p>Energy Production:</p>
                             <span>{this.state._pointsProduction}</span>
-                        </p>
-                        <p>
-                            Land Management:
+
+                            <p>Land Management:</p>
                             <span>{this.state._pointsManagement}</span>
-                        </p>
-                        <p>
-                            Total Carbon Points:
-                            <span>{this.state._total}</span>
-                        </p>
-                    </div>
-                    <div id="Total">
-                        <ProgressBar Value={this.state._total} Max={10000} />
+
+                            <p>Total Carbon Points:</p>
+                            <span>{this.state._pointsTotal}</span>
+                        </div>
+                        <div id="Total">
+                            <ProgressBar
+                                Value={this.state._pointsTotal}
+                                Max={10000}
+                            />
+                        </div>
                     </div>
                 </div>
 
-                <select
-                    value={this.state._view}
-                    onChange={(e) => {
-                        this.setState({ _view: e.target.value });
-                    }}
-                >
-                    <option value={ENERGY_EFFICIENCY}>Energy Efficiency</option>
-                    <option value={ENERGY_PRODUCTION}>Energy Production</option>
-                    <option value={LAND_MANAGEMENT}>Land Management</option>
-                </select>
                 {controls}
             </div>
         );
