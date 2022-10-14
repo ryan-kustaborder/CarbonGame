@@ -14,6 +14,10 @@
     min-height: 100vh;
 }
 
+select {
+    height: 26px;
+}
+
 .Slider {
     width: 200px;
     margin-right: 24px;
@@ -96,10 +100,11 @@
     }
 }
 
-.points {
+.PointBar {
     height: 40px;
-    border: 1px solid black;
+    border: 2px solid black;
     display: flex;
+    position: relative;
 
     & > div {
         width: 40px;
@@ -117,6 +122,45 @@
     }
     & > .green {
         background-color: green;
+    }
+
+    & > .ticks {
+        pointer-events: none;
+        width: 100%;
+        margin-left: -2px;
+        height: 6px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & > div {
+            width: 12px;
+            height: 100%;
+            border-left: 1px solid black;
+        }
+    }
+
+    & > .min {
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+    }
+
+    & > .max {
+        position: absolute;
+        bottom: -20px;
+        right: 0;
+    }
+
+    & > .value {
+        position: absolute;
+        right: -56px;
+        width: 48px;
     }
 }
 
