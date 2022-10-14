@@ -6,18 +6,68 @@ import CONTROLS, {
 } from "./Controls";
 
 import React, { Component } from "react";
+import ProgressBar from "./ProgressBar";
 
 class App extends Component {
     constructor(props) {
         super(props);
 
-        let initState = { _view: ENERGY_EFFICIENCY };
+        let initState = {
+            _view: ENERGY_EFFICIENCY,
+            _total: 0,
+            _controlsUsed: 0,
+        };
 
         for (let control of Object.values(CONTROLS)) {
             initState[control.name] = 0;
         }
 
         this.state = initState;
+    }
+
+    onChange() {
+        let pointsTotal = 0;
+        let pointsEfficiency = 0;
+        let pointsProduction = 0;
+        let pointsManagement = 0;
+        let remainingOptions = 0;
+
+        for (let control of Object.values(CONTROLS)) {
+            let points = this.state[control.name];
+            let green = control.green * points * 2;
+            let blue = control.blue * points * 3;
+            let red = control.red * points * 10;
+            let black = control.black * points * 1;
+
+            let value = green + blue + red + black;
+
+            let cat = control.category;
+
+            // Update Total Score
+            pointsTotal += value;
+
+            // Update Category Specific Scores
+            if (cat === ENERGY_EFFICIENCY) {
+                pointsEfficiency += value;
+            } else if (cat === ENERGY_PRODUCTION) {
+                pointsProduction += value;
+            } else if (cat === LAND_MANAGEMENT) {
+                pointsManagement += value;
+            }
+
+            // Update Used Options
+            remainingOptions += parseInt(this.state[control.name]);
+        }
+
+        let newState = {
+            _total: pointsTotal,
+            _controlsUsed: remainingOptions,
+            _pointsEfficiency: pointsEfficiency,
+            _pointsProduction: pointsProduction,
+            _pointsManagement: pointsManagement,
+        };
+
+        this.setState(newState);
     }
 
     calcTotalPoints() {
@@ -33,37 +83,7 @@ class App extends Component {
             sum += green + blue + red + black;
         }
 
-        return sum;
-    }
-
-    calcCategoryPoints(category) {
-        let sum = 0;
-
-        for (let control of Object.values(CONTROLS)) {
-            if (control.category !== category) {
-                continue;
-            }
-
-            let points = this.state[control.name];
-            let green = control.green * points * 2;
-            let blue = control.blue * points * 3;
-            let red = control.red * points * 10;
-            let black = control.black * points * 1;
-
-            sum += green + blue + red + black;
-        }
-
-        return sum;
-    }
-
-    calcOptionsRemaining() {
-        let sum = 0;
-
-        for (let control of Object.values(CONTROLS)) {
-            sum += parseInt(this.state[control.name]);
-        }
-
-        return 100 - sum;
+        this.setState({ _total: sum });
     }
 
     render() {
@@ -81,7 +101,9 @@ class App extends Component {
                     SetValue={(value) => {
                         let newState = { ...this.state };
                         newState[control.name] = value;
-                        this.setState(newState);
+                        this.setState(newState, () => {
+                            this.onChange();
+                        });
                     }}
                     Control={control}
                 />
@@ -90,22 +112,24 @@ class App extends Component {
 
         return (
             <div className="App">
-                <h2>
-                    Remaining Options:
-                    {this.calcOptionsRemaining()}
-                </h2>
-                <h1>Total Value: {this.calcTotalPoints()}</h1>
+                <ProgressBar Value={this.state._total} Max={10000} />
+                <ProgressBar
+                    Direction="horizontal"
+                    Value={this.state._controlsUsed}
+                    Max={100}
+                />
+
                 <h2>
                     Points from Energy Efficiency:
-                    {this.calcCategoryPoints(ENERGY_EFFICIENCY)}
+                    {this.state._pointsEfficiency}
                 </h2>
                 <h2>
                     Points from Energy Production:
-                    {this.calcCategoryPoints(ENERGY_PRODUCTION)}
+                    {this.state._pointsProduction}
                 </h2>
                 <h2>
                     Points from Land Management:
-                    {this.calcCategoryPoints(LAND_MANAGEMENT)}
+                    {this.state._pointsManagement}
                 </h2>
                 <select
                     value={this.state._view}

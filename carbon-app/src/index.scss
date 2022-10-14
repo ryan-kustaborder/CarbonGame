@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 .App {
     display: flex;
     flex-direction: column;
@@ -108,5 +113,37 @@
     & > label {
         position: absolute;
         top: -20px;
+    }
+}
+
+.ProgressBar {
+    height: 200px;
+    border: 1px solid black;
+    width: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    position: relative;
+
+    &.horizontal {
+        height: 24px;
+        width: 200px;
+
+        & > div {
+            height: 24px;
+        }
+    }
+
+    & > div {
+        background-color: red;
+    }
+
+    & > p {
+        position: absolute;
+        top: calc(50% - 8px);
+        left: calc(50% - 8px);
+        z-index: 1000;
     }
 }
