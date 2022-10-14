@@ -18,6 +18,8 @@
     --small: 16px;
     --medium: 32px;
     --large: 64px;
+
+    --small-type: 12px;
 }
 
 .App {
@@ -33,10 +35,7 @@ select {
 }
 
 .Slider {
-    width: 200px;
-    margin-right: var(--medium);
     position: relative;
-    margin-bottom: var(--large);
 
     & > input {
         width: 100%;
@@ -103,13 +102,13 @@ select {
 
     & > .min {
         position: absolute;
-        bottom: -36px;
+        bottom: -2px;
         left: 0;
     }
 
     & > .max {
         position: absolute;
-        bottom: -36px;
+        bottom: -2px;
         right: 0;
     }
 }
@@ -119,6 +118,7 @@ select {
     border: var(--border-thick);
     display: flex;
     position: relative;
+    margin-top: 4px;
 
     & > .red {
         background-color: var(--red);
@@ -150,78 +150,73 @@ select {
         & > div {
             width: 12px;
             height: 100%;
-            border-left: --border-thin;
+            border-left: var(--border-thin);
         }
     }
 
     & > .min {
         position: absolute;
-        bottom: -20px;
+        bottom: -18px;
         left: 0;
+        font-size: var(--small-type);
     }
 
     & > .max {
         position: absolute;
-        bottom: -20px;
+        bottom: -18px;
         right: 0;
+        font-size: var(--small-type);
     }
 
     & > .value {
         position: absolute;
         right: -56px;
         width: 48px;
+        top: -4px;
     }
 }
 
-.Option {
-    display: flex;
-
-    width: 80%;
+.Tons,
+.PPU {
     position: relative;
-    margin-bottom: 8px;
+    max-width: 72px;
+    font-size: 24px;
+    border: var(--border-thin);
 
-    & > label {
-        position: absolute;
-        top: -20px;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 4px;
+
+    & > p {
+        text-align: center;
+        margin: auto;
     }
 
-    & > .Tons,
-    .PPU {
-        position: relative;
-        margin-right: 32px;
-        font-size: 24px;
-        border: var(--border-thin);
-
-        display: grid;
-        grid-template-columns: auto auto;
-        column-gap: 4px;
-
-        &.PPU {
-            position: absolute;
-            right: 0;
-        }
-
-        & > p {
-            text-align: center;
-            margin: auto;
-        }
-
-        & > .green {
-            color: var(--green);
-        }
-
-        & > .blue {
-            color: var(--blue);
-        }
-
-        & > .red {
-            color: var(--red);
-        }
-
-        & > .black {
-            color: var(--black);
-        }
+    & > .green {
+        color: var(--green);
     }
+
+    & > .blue {
+        color: var(--blue);
+    }
+
+    & > .red {
+        color: var(--red);
+    }
+
+    & > .black {
+        color: var(--black);
+    }
+}
+
+#Options {
+    width: 90%;
+    max-height: 50vh;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    row-gap: var(--medium);
+    column-gap: var(--medium);
+    overflow-y: auto;
 }
 
 .ProgressBar {
@@ -274,7 +269,8 @@ select {
 
 #Top {
     display: flex;
-    margin-bottom: 24px;
+    margin-bottom: var(--medium);
+    max-height: 40vh;
 
     & > #Weights {
         width: 300px;

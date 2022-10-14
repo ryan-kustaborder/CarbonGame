@@ -4,8 +4,7 @@ import Slider from "./Slider";
 
 export default function Option(props) {
     return (
-        <div className="Option">
-            <label>{props.Option.name}</label>
+        <>
             <div className="Tons">
                 <p className="green">{props.Option.green}</p>
                 <p className="blue">{props.Option.blue}</p>
@@ -26,6 +25,6 @@ export default function Option(props) {
                 <p className="black">{props.Option.black * 1}</p>
                 <p className="red">{props.Option.red * 10}</p>
             </div>
-        </div>
+        </>
     );
 }

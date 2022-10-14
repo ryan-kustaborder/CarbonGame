@@ -226,7 +226,7 @@ class App extends Component {
                     </div>
                 </div>
 
-                {options}
+                <div id="Options">{options}</div>
             </div>
         );
     }

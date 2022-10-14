@@ -63,15 +63,18 @@ export default function PointBar(props) {
     }
 
     return (
-        <div className="PointBar" ref={containerRef}>
-            <div className="green" ref={greenRef}></div>
-            <div className="blue" ref={blueRef}></div>
-            <div className="red" ref={redRef}></div>
-            <div className="black" ref={blackRef}></div>
-            <div className="ticks">{ticks}</div>
-            <p className="min">0</p>
-            <p className="max">{max}</p>
-            <p className="value">Points {value}</p>
+        <div>
+            <label>{props.Option.name}</label>
+            <div className="PointBar" ref={containerRef}>
+                <div className="green" ref={greenRef}></div>
+                <div className="blue" ref={blueRef}></div>
+                <div className="red" ref={redRef}></div>
+                <div className="black" ref={blackRef}></div>
+                <div className="ticks">{ticks}</div>
+                <p className="min">0</p>
+                <p className="max">{max}</p>
+                <p className="value">Points {value}</p>
+            </div>
         </div>
     );
 }
