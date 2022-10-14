@@ -5,6 +5,8 @@ import CONTROLS, {
     LAND_MANAGEMENT,
 } from "./Controls";
 
+import WEIGHTS from "./images/weights.png";
+
 import React, { Component } from "react";
 import ProgressBar from "./ProgressBar";
 
@@ -16,6 +18,9 @@ class App extends Component {
             _view: ENERGY_EFFICIENCY,
             _total: 0,
             _controlsUsed: 0,
+            _pointsEfficiency: 0,
+            _pointsProduction: 0,
+            _pointsManagement: 0,
         };
 
         for (let control of Object.values(CONTROLS)) {
@@ -70,22 +75,6 @@ class App extends Component {
         this.setState(newState);
     }
 
-    calcTotalPoints() {
-        let sum = 0;
-
-        for (let control of Object.values(CONTROLS)) {
-            let points = this.state[control.name];
-            let green = control.green * points * 2;
-            let blue = control.blue * points * 3;
-            let red = control.red * points * 10;
-            let black = control.black * points * 1;
-
-            sum += green + blue + red + black;
-        }
-
-        this.setState({ _total: sum });
-    }
-
     render() {
         const controls = [];
 
@@ -112,25 +101,36 @@ class App extends Component {
 
         return (
             <div className="App">
-                <ProgressBar Value={this.state._total} Max={10000} />
-                <ProgressBar
-                    Direction="horizontal"
-                    Value={this.state._controlsUsed}
-                    Max={100}
-                />
+                <img id="Weights" src={WEIGHTS} />
+                <div id="Scores">
+                    <div id="Breakdown">
+                        <ProgressBar
+                            Direction="horizontal"
+                            Value={this.state._controlsUsed}
+                            Max={100}
+                        />
+                        <p>
+                            Energy Efficiency:
+                            <span>{this.state._pointsEfficiency}</span>
+                        </p>
+                        <p>
+                            Energy Production:
+                            <span>{this.state._pointsProduction}</span>
+                        </p>
+                        <p>
+                            Land Management:
+                            <span>{this.state._pointsManagement}</span>
+                        </p>
+                        <p>
+                            Total Carbon Points:
+                            <span>{this.state._total}</span>
+                        </p>
+                    </div>
+                    <div id="Total">
+                        <ProgressBar Value={this.state._total} Max={10000} />
+                    </div>
+                </div>
 
-                <h2>
-                    Points from Energy Efficiency:
-                    {this.state._pointsEfficiency}
-                </h2>
-                <h2>
-                    Points from Energy Production:
-                    {this.state._pointsProduction}
-                </h2>
-                <h2>
-                    Points from Land Management:
-                    {this.state._pointsManagement}
-                </h2>
                 <select
                     value={this.state._view}
                     onChange={(e) => {

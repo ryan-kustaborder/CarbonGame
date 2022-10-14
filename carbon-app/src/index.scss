@@ -147,3 +147,32 @@
         z-index: 1000;
     }
 }
+
+#Scores {
+    border: 1px solid red;
+    display: flex;
+
+    & > #Total {
+        background-color: green;
+    }
+
+    & > #Breakdown {
+        background-color: yellow;
+
+        & > p {
+            margin: 4px;
+            display: flex;
+            justify-content: space-between;
+
+            & > span {
+                border: 1px solid black;
+                display: inline-block;
+                width: 40px;
+            }
+        }
+    }
+}
+
+#Weights {
+    width: 300px;
+}
