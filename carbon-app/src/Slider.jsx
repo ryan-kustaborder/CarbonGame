@@ -63,6 +63,8 @@ export default function Slider(props) {
             ></input>
             {icon}
             <div className="ticks">{ticks}</div>
+            <p className="min">0</p>
+            <p className="max">{props.Option.max}</p>
         </div>
     );
 }

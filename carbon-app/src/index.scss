@@ -18,7 +18,7 @@
     width: 200px;
     margin-right: 24px;
     position: relative;
-    margin-bottom: 48px;
+    margin-bottom: 64px;
 
     & > input {
         width: 100%;
@@ -81,6 +81,18 @@
             height: 70%;
             background-color: black;
         }
+    }
+
+    & > .min {
+        position: absolute;
+        bottom: -36px;
+        left: 0;
+    }
+
+    & > .max {
+        position: absolute;
+        bottom: -36px;
+        right: 0;
     }
 }
 
