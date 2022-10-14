@@ -3,28 +3,31 @@ import "./Slider.scss";
 import "@yaireo/ui-range";
 
 export default function Slider(props) {
+    // Create refs for DOM elements
     const iconRef = useRef(null);
     const divRef = useRef(null);
     const inputRef = useRef(null);
 
+    // Once ready position the thumb icon
     useEffect(() => {
         inputRef.update = (e) => {
             props.OnChange(e.target.value);
 
             let w = inputRef.current.offsetWidth;
 
-            let x = (e.target.value / props.Control.max) * w - 24;
+            let x = (e.target.value / props.Option.max) * w - 24;
 
             iconRef.current.style.left = x + "px";
         };
 
         let w = inputRef.current.offsetWidth;
 
-        let x = (props.Value / props.Control.max) * w - 24;
+        let x = (props.Value / props.Option.max) * w - 24;
 
         iconRef.current.style.left = x + "px";
     }, [props]);
 
+    // Define SVG for thumb icon
     const icon = (
         <svg
             ref={iconRef}
@@ -38,9 +41,10 @@ export default function Slider(props) {
         </svg>
     );
 
+    // Generate range tick divs
     const ticks = [];
 
-    for (let i = 0; i <= props.Control.max; i++) {
+    for (let i = 0; i <= props.Option.max; i++) {
         ticks.push(<div key={props.Name + " = " + i}></div>);
     }
 
@@ -55,7 +59,7 @@ export default function Slider(props) {
                     inputRef.update(e);
                 }}
                 min={0}
-                max={props.Control.max}
+                max={props.Option.max}
             ></input>
             {icon}
             <div className="ticks">{ticks}</div>

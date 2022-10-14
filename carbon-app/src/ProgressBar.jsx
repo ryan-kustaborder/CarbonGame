@@ -3,9 +3,11 @@ import { useEffect } from "react";
 import { useRef } from "react";
 
 export default function ProgressBar(props) {
+    // Create refs for DOM elements
     const outer = useRef(null);
     const inner = useRef(null);
 
+    // Once ready, set the inner div to correct size
     useEffect(() => {
         if (props.Direction === "horizontal") {
             let w = outer.current.offsetWidth;

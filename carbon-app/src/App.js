@@ -1,9 +1,9 @@
 import Option from "./Option";
-import CONTROLS, {
+import OPTIONS, {
     ENERGY_EFFICIENCY,
     ENERGY_PRODUCTION,
     LAND_MANAGEMENT,
-} from "./Controls";
+} from "./Options";
 
 import WEIGHTS from "./images/weights.png";
 
@@ -14,6 +14,7 @@ class App extends Component {
     constructor(props) {
         super(props);
 
+        // Initialize the state variables
         let initState = {
             _view: ENERGY_EFFICIENCY,
 
@@ -28,13 +29,16 @@ class App extends Component {
             _pointsManagement: 0,
         };
 
-        for (let control of Object.values(CONTROLS)) {
-            initState[control.name] = 0;
+        // Add a value for each option
+        for (let option of Object.values(OPTIONS)) {
+            initState[option.name] = 0;
         }
 
         this.state = initState;
     }
 
+    // Runs when an option is changed
+    // Calculates point values and counts options used
     onChange() {
         let pointsTotal = 0;
         let pointsEfficiency = 0;
@@ -46,16 +50,22 @@ class App extends Component {
         let optionsProduction = 0;
         let optionsManagement = 0;
 
-        for (let control of Object.values(CONTROLS)) {
-            let points = this.state[control.name];
-            let green = control.green * points * 2;
-            let blue = control.blue * points * 3;
-            let red = control.red * points * 10;
-            let black = control.black * points * 1;
+        // Get values from each option
+        for (let option of Object.values(OPTIONS)) {
+            // Get current amount invested in option
+            let points = this.state[option.name];
 
+            // Get individual category values
+            let green = option.green * points * 2;
+            let blue = option.blue * points * 3;
+            let red = option.red * points * 10;
+            let black = option.black * points * 1;
+
+            // Get total points
             let value = green + blue + red + black;
 
-            let cat = control.category;
+            // Get the category of option
+            let cat = option.category;
 
             // Update Total Score
             pointsTotal += value;
@@ -70,7 +80,7 @@ class App extends Component {
             }
 
             // Update Total Options Used
-            let options = parseInt(this.state[control.name]);
+            let options = parseInt(this.state[option.name]);
             optionsTotal += options;
 
             // Update Category Specific Options Used
@@ -83,6 +93,7 @@ class App extends Component {
             }
         }
 
+        // Construct new state
         let newState = {
             _pointsTotal: pointsTotal,
             _pointsEfficiency: pointsEfficiency,
@@ -99,6 +110,7 @@ class App extends Component {
     }
 
     render() {
+        // Create progress bar for specific category
         let categoryLimit;
 
         if (this.state._view === ENERGY_EFFICIENCY) {
@@ -127,25 +139,32 @@ class App extends Component {
             );
         }
 
-        const controls = [];
+        // Generate DOM elements for each option
+        const options = [];
 
-        for (let control of Object.values(CONTROLS)) {
-            if (control.category !== this.state._view) {
+        for (let option of Object.values(OPTIONS)) {
+            // Skip options in other categories
+            if (option.category !== this.state._view) {
                 continue;
             }
 
-            controls.push(
+            options.push(
                 <Option
-                    key={control.name}
-                    Value={this.state[control.name]}
+                    key={option.name}
+                    Value={this.state[option.name]}
                     SetValue={(value) => {
+                        // Copy old state
                         let newState = { ...this.state };
-                        newState[control.name] = value;
+
+                        // Set the new value
+                        newState[option.name] = value;
+
+                        // Set the state and then call onChange
                         this.setState(newState, () => {
                             this.onChange();
                         });
                     }}
-                    Control={control}
+                    Option={option}
                 />
             );
         }
@@ -206,7 +225,7 @@ class App extends Component {
                     </div>
                 </div>
 
-                {controls}
+                {options}
             </div>
         );
     }

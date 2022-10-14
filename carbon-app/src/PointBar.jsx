@@ -2,34 +2,36 @@ import React from "react";
 import { useRef, useEffect } from "react";
 
 export default function PointBar(props) {
+    // Create refs for DOM elements
     const containerRef = useRef(null);
     const greenRef = useRef(null);
     const blueRef = useRef(null);
     const redRef = useRef(null);
     const blackRef = useRef(null);
 
+    // Once ready, set the widths of each category section
     useEffect(() => {
-        let ratio = 0.1;
+        let ratio = 0.12;
         let con =
-            (props.Control.green * 2 +
-                props.Control.blue * 3 +
-                props.Control.red * 10 +
-                props.Control.black * 1) *
-            props.Control.max *
-            0.1;
+            (props.Option.green * 2 +
+                props.Option.blue * 3 +
+                props.Option.red * 10 +
+                props.Option.black * 1) *
+            props.Option.max *
+            ratio;
 
         containerRef.current.style.width = con + "px";
 
-        let green = props.Control.green * props.Points * ratio * 2;
+        let green = props.Option.green * props.Points * ratio * 2;
         greenRef.current.style.width = green + "px";
 
-        let blue = props.Control.blue * props.Points * ratio * 3;
+        let blue = props.Option.blue * props.Points * ratio * 3;
         blueRef.current.style.width = blue + "px";
 
-        let red = props.Control.red * props.Points * ratio * 10;
+        let red = props.Option.red * props.Points * ratio * 10;
         redRef.current.style.width = red + "px";
 
-        let black = props.Control.black * props.Points * ratio * 1;
+        let black = props.Option.black * props.Points * ratio * 1;
         blackRef.current.style.width = black + "px";
     }, [props]);
 

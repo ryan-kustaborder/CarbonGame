@@ -1,8 +1,23 @@
+/*
+
+Data Collector for Carbon Game Options
+
+Each option has the following properties:
+name - the name to be displayed and used as a key (must be unique!)
+category - [ENERGY_EFFICIENCY | ENERGY_PRODUCTION | LAND_MANAGEMENT]
+max - the maximum amount that can be invested into the option
+green - tons of carbon per unit (Add Biomass)
+blue - tons of carbon per unit (Reduce Ocean Acidification)
+red - tons of carbon per unit (Remove CO2 From Atmosphere)
+black - tons of carbon per unit (Save Fossil Fuels)
+
+*/
+
 export const LAND_MANAGEMENT = "Land Management";
 export const ENERGY_PRODUCTION = "Energy Production";
 export const ENERGY_EFFICIENCY = "Energy Efficiency";
 
-const CONTROLS = {
+const OPTIONS = {
     ConservationTillage: {
         name: "Conservation Tillage",
         category: LAND_MANAGEMENT,
@@ -207,4 +222,4 @@ const CONTROLS = {
     },
 };
 
-export default CONTROLS;
+export default OPTIONS;
