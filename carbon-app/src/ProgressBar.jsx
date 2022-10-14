@@ -28,6 +28,7 @@ export default function ProgressBar(props) {
 
     return (
         <div className={classStyle} ref={outer}>
+            <p className="label">{props.Label}</p>
             <div ref={inner}></div>
             <p className="max">{props.Max}</p>
             <p className="value">{props.Value}</p>

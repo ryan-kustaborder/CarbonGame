@@ -220,6 +220,7 @@ class App extends Component {
                             <ProgressBar
                                 Value={this.state._pointsTotal}
                                 Max={10000}
+                                Label="Total Carbon Points"
                             />
                         </div>
                     </div>
