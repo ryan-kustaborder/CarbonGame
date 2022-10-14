@@ -153,7 +153,11 @@ class App extends Component {
         return (
             <div className="App">
                 <div id="Top">
-                    <img id="Weights" src={WEIGHTS} />
+                    <img
+                        id="Weights"
+                        src={WEIGHTS}
+                        alt="Carbon point multiplier by category"
+                    />
                     <div id="Scores">
                         <div id="Breakdown">
                             <select

@@ -20,7 +20,7 @@ export default function ProgressBar(props) {
 
             inner.current.style.height = y + "px";
         }
-    }, [props.Value]);
+    }, [props]);
 
     const classStyle = "ProgressBar " + props.Direction;
 
