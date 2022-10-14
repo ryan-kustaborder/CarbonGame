@@ -9,20 +9,29 @@ export default function PointBar(props) {
     const blackRef = useRef(null);
 
     useEffect(() => {
-        let ratio = containerRef.current.offsetWidth / props.Max;
+        let ratio = 0.1;
+        let con =
+            (props.Control.green * 2 +
+                props.Control.blue * 3 +
+                props.Control.red * 10 +
+                props.Control.black * 1) *
+            props.Control.max *
+            0.1;
+        console.log(con);
+        containerRef.current.style.width = con + "px";
 
-        let green = props.Green * props.Points * ratio * 2;
+        let green = props.Control.green * props.Points * ratio * 2;
         greenRef.current.style.width = green + "px";
 
-        let blue = props.Blue * props.Points * ratio * 3;
+        let blue = props.Control.blue * props.Points * ratio * 3;
         blueRef.current.style.width = blue + "px";
 
-        let red = props.Red * props.Points * ratio * 10;
+        let red = props.Control.red * props.Points * ratio * 10;
         redRef.current.style.width = red + "px";
 
-        let black = props.Black * props.Points * ratio * 1;
+        let black = props.Control.black * props.Points * ratio * 1;
         blackRef.current.style.width = black + "px";
-    }, [props.Points]);
+    }, [props]);
 
     return (
         <div className="points" ref={containerRef}>

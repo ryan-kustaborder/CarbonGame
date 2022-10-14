@@ -1,30 +1,41 @@
 import { useState } from "react";
-import PointBar from "./PointBar";
-import Slider from "./Slider";
+import Control from "./Control";
+import CONTROLS from "./Controls";
 
-function App() {
-    const [value, setValue] = useState(0);
+import React, { Component } from "react";
 
-    return (
-        <div className="App">
-            <h2>Value: {value}</h2>
-            <Slider
-                Name="Value"
-                Value={value}
-                Min={0}
-                Max={20}
-                OnChange={setValue}
-            />
-            <PointBar
-                Points={value}
-                Green={15}
-                Blue={3}
-                Red={6}
-                Black={0}
-                Max={2970}
-            />
-        </div>
-    );
+class App extends Component {
+    constructor(props) {
+        super(props);
+
+        let initState = {};
+
+        for (let [key, control] of Object.entries(CONTROLS)) {
+            initState[control.name] = 0;
+        }
+
+        this.state = initState;
+    }
+
+    render() {
+        const controls = [];
+
+        for (let [key, control] of Object.entries(CONTROLS)) {
+            controls.push(
+                <Control
+                    Value={this.state[control.name]}
+                    SetValue={(value) => {
+                        let newState = { ...this.state };
+                        newState[control.name] = value;
+                        this.setState(newState);
+                    }}
+                    Control={control}
+                />
+            );
+        }
+
+        return <div className="App">{controls}</div>;
+    }
 }
 
 export default App;

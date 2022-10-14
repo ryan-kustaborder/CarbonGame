@@ -7,7 +7,8 @@
 }
 
 .Slider {
-    width: 50%;
+    width: 100px;
+    margin-right: 24px;
     position: relative;
     margin-bottom: 48px;
 
@@ -74,7 +75,6 @@
 }
 
 .points {
-    width: 400px;
     height: 40px;
     border: 1px solid black;
     display: flex;
@@ -96,4 +96,10 @@
     & > .green {
         background-color: green;
     }
+}
+
+.treatment {
+    display: flex;
+
+    width: 90%;
 }

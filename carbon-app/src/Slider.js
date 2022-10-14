@@ -13,14 +13,14 @@ export default function Slider(props) {
 
             let w = inputRef.current.offsetWidth;
 
-            let x = (e.target.value / (props.Max - props.Min)) * w - 24;
+            let x = (e.target.value / props.Control.max) * w - 24;
 
             iconRef.current.style.left = x + "px";
         };
 
         let w = inputRef.current.offsetWidth;
 
-        let x = (props.Value / (props.Max - props.Min)) * w - 24;
+        let x = (props.Value / props.Control.max) * w - 24;
 
         iconRef.current.style.left = x + "px";
     }, [props]);
@@ -40,7 +40,7 @@ export default function Slider(props) {
 
     const ticks = [];
 
-    for (let i = props.Min; i <= props.Max; i++) {
+    for (let i = 0; i <= props.Control.max; i++) {
         ticks.push(<div key={props.Name + " = " + i}></div>);
     }
 
@@ -55,7 +55,7 @@ export default function Slider(props) {
                     inputRef.update(e);
                 }}
                 min={0}
-                max={20}
+                max={props.Control.max}
             ></input>
             {icon}
             <div className="ticks">{ticks}</div>
