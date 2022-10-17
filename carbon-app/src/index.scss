@@ -240,6 +240,10 @@ select {
         }
     }
 
+    &.red > div {
+        background-color: var(--red);
+    }
+
     & > div {
         background-color: var(--green);
     }
