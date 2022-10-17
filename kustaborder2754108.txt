@@ -1,0 +1,5 @@
+Time Log:
+10/12/22: 8:00pm - 11:00pm Initial set up of project and basic layout development
+10/13/22: 4:00pm - 7:00pm Created sliders and progress bars 
+10/14/22: 8:00am - 11:00am Set up point system and added all the options
+10/16/22: 9:00pm - 10:00pm Fixing bugs for progress bars
