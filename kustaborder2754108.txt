@@ -3,3 +3,6 @@ Time Log:
 10/13/22: 4:00pm - 7:00pm Created sliders and progress bars 
 10/14/22: 8:00am - 11:00am Set up point system and added all the options
 10/16/22: 9:00pm - 10:00pm Fixing bugs for progress bars
+10/22/22: 9:00pm - 10:00pm Requirements documentation
+10/28/22: 2:00pm - 4:00pm Testing
+11/04/22: 3:00pm - 6:00pm Worked on preproposal
