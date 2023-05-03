@@ -110,6 +110,11 @@ class App extends Component {
         this.setState(newState);
     }
 
+    loadState(s) {
+        this.setState(s);
+        console.log(this.state);
+    }
+
     render() {
         // Create progress bar for specific category
         let categoryLimit;
@@ -224,6 +229,56 @@ class App extends Component {
                                 Label="Total Carbon Points"
                             />
                         </div>
+                    </div>
+                    <div id="save-load-container">
+                        <button
+                            onClick={(e) => {
+                                // Create Save State JSON
+                                const fileData = JSON.stringify({
+                                    gameState: this.state,
+                                    score: this.state._pointsTotal,
+                                    createdAt: new Date().getTime(),
+                                });
+
+                                // Turn JSON into file
+                                const blob = new Blob([fileData], {
+                                    type: "text/plain",
+                                });
+
+                                // Create URL for file
+                                const url = URL.createObjectURL(blob);
+                                const link = document.createElement("a");
+                                link.download = "carbon-game-save.json";
+                                link.href = url;
+                                link.click();
+                            }}
+                        >
+                            Save Game
+                        </button>
+                        <input
+                            type="file"
+                            id="myFileInput"
+                            style={{ display: "none" }}
+                            onChange={(e) => {
+                                console.log(e);
+                                var reader = new FileReader();
+                                reader.onload = (e) => {
+                                    console.log(JSON.parse(e.target.result));
+
+                                    this.loadState(
+                                        JSON.parse(e.target.result).gameState
+                                    );
+                                };
+                                reader.readAsText(e.target.files[0]);
+                            }}
+                        />
+                        <input
+                            type="button"
+                            onClick={() => {
+                                document.getElementById("myFileInput").click();
+                            }}
+                            value="Load Game"
+                        />
                     </div>
                 </div>
 
